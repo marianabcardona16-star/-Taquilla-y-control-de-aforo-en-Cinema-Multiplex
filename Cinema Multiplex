@@ -1,184 +1,109 @@
-Algoritmo Algoritmo CinemaMultiplex
-    Definir capacidad_inicial, disponibles, ocupados, opcion, cat, cant Como Entero
-    Definir precio_unit, subtotal, desc, total_pagar, recaudo_total Como Real
-    Definir cant_general, cant_estud, trans_con_desc Como Entero
-
-    cant_general <- 0
-    cant_estud <- 0
-    trans_con_desc <- 0
-    recaudo_total <- 0
-
-    Escribir "Capacidad inicial (1-80):"
-    Leer capacidad_inicial
-
-    Mientras capacidad_inicial < 1 O capacidad_inicial > 80 Hacer
-        Escribir "Inválida. Reingrese:"
-        Leer capacidad_inicial
-    FinMientras
-
-    disponibles <- capacidad_inicial
+Algoritmo CinemaMultiplex
+	
+    Definir capacidad, disponibles, ocupados Como Entero
+    Definir opcion, categoria, cantidad Como Entero
+    Definir precio, subtotal, descuento, total Como Real
+    Definir boletosGeneral, boletosEstudiante, transaccionesDescuento Como Entero
+    Definir recaudo Como Real
+	
+    boletosGeneral <- 0
+    boletosEstudiante <- 0
+    transaccionesDescuento <- 0
+    recaudo <- 0
     ocupados <- 0
-
+	
+    Escribir "Ingrese la capacidad de la sala (1 a 80):"
+    Leer capacidad
+	
+    Mientras capacidad < 1 O capacidad > 80 Hacer
+        Escribir "Capacidad invalida. Ingrese un valor de 1 a 80:"
+        Leer capacidad
+    FinMientras
+	
+    disponibles <- capacidad
+	
     Repetir
-        Escribir "1. Vender"
-        Escribir "2. Estado sala"
-        Escribir "3. Cierre"
+		
+        Escribir "1. Vender boletos"
+        Escribir "2. Estado de la sala"
+        Escribir "3. Cerrar"
         Leer opcion
-
+		
         Segun opcion Hacer
+			
             1:
-                Escribir "Categoría (1=General, 2=Estudiante):"
-                Leer cat
-
-                Si cat = 1 O cat = 2 Entonces
+                Escribir "1. General"
+                Escribir "2. Estudiante"
+                Leer categoria
+				
+                Si categoria = 1 O categoria = 2 Entonces
+					
                     Escribir "Cantidad de boletos:"
-                    Leer cant
-
-                    Mientras cant <= 0 Hacer
-                        Escribir "Inválida. Reingrese:"
-                        Leer cant
+                    Leer cantidad
+					
+                    Mientras cantidad <= 0 Hacer
+                        Escribir "Cantidad invalida. Ingrese nuevamente:"
+                        Leer cantidad
                     FinMientras
-
-                    Si cant > disponibles Entonces
-                        Escribir "No hay suficientes asientos"
+					
+                    Si cantidad <= disponibles Entonces
+						
+                        Si categoria = 1 Entonces
+                            precio <- 12000
+                        SiNo
+                            precio <- 8000
+                        FinSi
+						
+                        subtotal <- cantidad * precio
+						
+                        Si cantidad >= 4 Entonces
+                            descuento <- subtotal * 0.10
+                            transaccionesDescuento <- transaccionesDescuento + 1
+                        SiNo
+                            descuento <- 0
+                        FinSi
+						
+                        total <- subtotal - descuento
+						
+                        recaudo <- recaudo + total
+                        disponibles <- disponibles - cantidad
+                        ocupados <- ocupados + cantidad
+						
+                        Si categoria = 1 Entonces
+                            boletosGeneral <- boletosGeneral + cantidad
+                        SiNo
+                            boletosEstudiante <- boletosEstudiante + cantidad
+                        FinSi
+						
+                        Escribir "Total a pagar: $", total
+						
                     SiNo
-                        Si cat = 1 Entonces
-                            precio_unit <- 12000
-                        SiNo
-                            precio_unit <- 8000
-                        FinSi
-
-                        subtotal <- cant * precio_unit
-
-                        Si cant >= 4 Entonces
-                            desc <- subtotal * 0.10
-                            trans_con_desc <- trans_con_desc + 1
-                        SiNo
-                            desc <- 0
-                        FinSi
-
-                        total_pagar <- subtotal - desc
-                        recaudo_total <- recaudo_total + total_pagar
-                        disponibles <- disponibles - cant
-                        ocupados <- ocupados + cant
-
-                        Si cat = 1 Entonces
-                            cant_general <- cant_general + cant
-                        SiNo
-                            cant_estud <- cant_estud + cant
-                        FinSi
-
-                        Escribir "Total a pagar: $", total_pagar
+                        Escribir "No hay suficientes asientos."
                     FinSi
+					
                 SiNo
-                    Escribir "Categoría inválida"
+                    Escribir "Categoria invalida."
                 FinSi
-
+				
             2:
-                Escribir "Ocupados: ", ocupados
-                Escribir "Disponibles: ", disponibles
-
+                Escribir "Asientos ocupados: ", ocupados
+                Escribir "Asientos disponibles: ", disponibles
+				
             3:
-                Escribir "Total recaudado: $", recaudo_total
-                Escribir "Boletos General: ", cant_general
-                Escribir "Boletos Estudiante: ", cant_estud
-                Escribir "Transacciones con descuento: ", trans_con_desc
-
+                Escribir "CIERRE DE CAJA"
+                Escribir "Total recaudado: $", recaudo
+                Escribir "Boletos General: ", boletosGeneral
+                Escribir "Boletos Estudiante: ", boletosEstudiante
+                Escribir "Transacciones con descuento: ", transaccionesDescuento
+                Escribir "Cerrando sistema..."
+				
             De Otro Modo:
-                Escribir "Opción inválida"
+                Escribir "Opcion invalida."
+				
         FinSegun
+		
     Hasta Que opcion = 3
+	
 FinAlgoritmo
 
-
-    Definir capacidad_inicial, disponibles, ocupados, opcion, cat, cant Como Entero
-    Definir precio_unit, subtotal, desc, total_pagar, recaudo_total Como Real
-    Definir cant_general, cant_estud, trans_con_desc Como Entero
-
-    cant_general <- 0
-    cant_estud <- 0
-    trans_con_desc <- 0
-    recaudo_total <- 0
-
-    Escribir "Capacidad inicial (1-80):"
-    Leer capacidad_inicial
-
-    Mientras capacidad_inicial < 1 O capacidad_inicial > 80 Hacer
-        Escribir "Inválida. Reingrese:"
-        Leer capacidad_inicial
-    FinMientras
-
-    disponibles <- capacidad_inicial
-    ocupados <- 0
-
-    Repetir
-        Escribir "1. Vender"
-        Escribir "2. Estado sala"
-        Escribir "3. Cierre"
-        Leer opcion
-
-        Segun opcion Hacer
-            1:
-                Escribir "Categoría (1=General, 2=Estudiante):"
-                Leer cat
-
-                Si cat = 1 O cat = 2 Entonces
-                    Escribir "Cantidad de boletos:"
-                    Leer cant
-
-                    Mientras cant <= 0 Hacer
-                        Escribir "Inválida. Reingrese:"
-                        Leer cant
-                    FinMientras
-
-                    Si cant > disponibles Entonces
-                        Escribir "No hay suficientes asientos"
-                    SiNo
-                        Si cat = 1 Entonces
-                            precio_unit <- 12000
-                        SiNo
-                            precio_unit <- 8000
-                        FinSi
-
-                        subtotal <- cant * precio_unit
-
-                        Si cant >= 4 Entonces
-                            desc <- subtotal * 0.10
-                            trans_con_desc <- trans_con_desc + 1
-                        SiNo
-                            desc <- 0
-                        FinSi
-
-                        total_pagar <- subtotal - desc
-                        recaudo_total <- recaudo_total + total_pagar
-                        disponibles <- disponibles - cant
-                        ocupados <- ocupados + cant
-
-                        Si cat = 1 Entonces
-                            cant_general <- cant_general + cant
-                        SiNo
-                            cant_estud <- cant_estud + cant
-                        FinSi
-
-                        Escribir "Total a pagar: $", total_pagar
-                    FinSi
-                SiNo
-                    Escribir "Categoría inválida"
-                FinSi
-
-            2:
-                Escribir "Ocupados: ", ocupados
-                Escribir "Disponibles: ", disponibles
-
-            3:
-                Escribir "Total recaudado: $", recaudo_total
-                Escribir "Boletos General: ", cant_general
-                Escribir "Boletos Estudiante: ", cant_estud
-                Escribir "Transacciones con descuento: ", trans_con_desc
-
-            De Otro Modo:
-                Escribir "Opción inválida"
-        FinSegun
-    Hasta Que opcion = 3
-FinAlgoritmo
 

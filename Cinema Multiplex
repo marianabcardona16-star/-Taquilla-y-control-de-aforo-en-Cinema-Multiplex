@@ -1,0 +1,184 @@
+Algoritmo Algoritmo CinemaMultiplex
+    Definir capacidad_inicial, disponibles, ocupados, opcion, cat, cant Como Entero
+    Definir precio_unit, subtotal, desc, total_pagar, recaudo_total Como Real
+    Definir cant_general, cant_estud, trans_con_desc Como Entero
+
+    cant_general <- 0
+    cant_estud <- 0
+    trans_con_desc <- 0
+    recaudo_total <- 0
+
+    Escribir "Capacidad inicial (1-80):"
+    Leer capacidad_inicial
+
+    Mientras capacidad_inicial < 1 O capacidad_inicial > 80 Hacer
+        Escribir "Inválida. Reingrese:"
+        Leer capacidad_inicial
+    FinMientras
+
+    disponibles <- capacidad_inicial
+    ocupados <- 0
+
+    Repetir
+        Escribir "1. Vender"
+        Escribir "2. Estado sala"
+        Escribir "3. Cierre"
+        Leer opcion
+
+        Segun opcion Hacer
+            1:
+                Escribir "Categoría (1=General, 2=Estudiante):"
+                Leer cat
+
+                Si cat = 1 O cat = 2 Entonces
+                    Escribir "Cantidad de boletos:"
+                    Leer cant
+
+                    Mientras cant <= 0 Hacer
+                        Escribir "Inválida. Reingrese:"
+                        Leer cant
+                    FinMientras
+
+                    Si cant > disponibles Entonces
+                        Escribir "No hay suficientes asientos"
+                    SiNo
+                        Si cat = 1 Entonces
+                            precio_unit <- 12000
+                        SiNo
+                            precio_unit <- 8000
+                        FinSi
+
+                        subtotal <- cant * precio_unit
+
+                        Si cant >= 4 Entonces
+                            desc <- subtotal * 0.10
+                            trans_con_desc <- trans_con_desc + 1
+                        SiNo
+                            desc <- 0
+                        FinSi
+
+                        total_pagar <- subtotal - desc
+                        recaudo_total <- recaudo_total + total_pagar
+                        disponibles <- disponibles - cant
+                        ocupados <- ocupados + cant
+
+                        Si cat = 1 Entonces
+                            cant_general <- cant_general + cant
+                        SiNo
+                            cant_estud <- cant_estud + cant
+                        FinSi
+
+                        Escribir "Total a pagar: $", total_pagar
+                    FinSi
+                SiNo
+                    Escribir "Categoría inválida"
+                FinSi
+
+            2:
+                Escribir "Ocupados: ", ocupados
+                Escribir "Disponibles: ", disponibles
+
+            3:
+                Escribir "Total recaudado: $", recaudo_total
+                Escribir "Boletos General: ", cant_general
+                Escribir "Boletos Estudiante: ", cant_estud
+                Escribir "Transacciones con descuento: ", trans_con_desc
+
+            De Otro Modo:
+                Escribir "Opción inválida"
+        FinSegun
+    Hasta Que opcion = 3
+FinAlgoritmo
+
+
+    Definir capacidad_inicial, disponibles, ocupados, opcion, cat, cant Como Entero
+    Definir precio_unit, subtotal, desc, total_pagar, recaudo_total Como Real
+    Definir cant_general, cant_estud, trans_con_desc Como Entero
+
+    cant_general <- 0
+    cant_estud <- 0
+    trans_con_desc <- 0
+    recaudo_total <- 0
+
+    Escribir "Capacidad inicial (1-80):"
+    Leer capacidad_inicial
+
+    Mientras capacidad_inicial < 1 O capacidad_inicial > 80 Hacer
+        Escribir "Inválida. Reingrese:"
+        Leer capacidad_inicial
+    FinMientras
+
+    disponibles <- capacidad_inicial
+    ocupados <- 0
+
+    Repetir
+        Escribir "1. Vender"
+        Escribir "2. Estado sala"
+        Escribir "3. Cierre"
+        Leer opcion
+
+        Segun opcion Hacer
+            1:
+                Escribir "Categoría (1=General, 2=Estudiante):"
+                Leer cat
+
+                Si cat = 1 O cat = 2 Entonces
+                    Escribir "Cantidad de boletos:"
+                    Leer cant
+
+                    Mientras cant <= 0 Hacer
+                        Escribir "Inválida. Reingrese:"
+                        Leer cant
+                    FinMientras
+
+                    Si cant > disponibles Entonces
+                        Escribir "No hay suficientes asientos"
+                    SiNo
+                        Si cat = 1 Entonces
+                            precio_unit <- 12000
+                        SiNo
+                            precio_unit <- 8000
+                        FinSi
+
+                        subtotal <- cant * precio_unit
+
+                        Si cant >= 4 Entonces
+                            desc <- subtotal * 0.10
+                            trans_con_desc <- trans_con_desc + 1
+                        SiNo
+                            desc <- 0
+                        FinSi
+
+                        total_pagar <- subtotal - desc
+                        recaudo_total <- recaudo_total + total_pagar
+                        disponibles <- disponibles - cant
+                        ocupados <- ocupados + cant
+
+                        Si cat = 1 Entonces
+                            cant_general <- cant_general + cant
+                        SiNo
+                            cant_estud <- cant_estud + cant
+                        FinSi
+
+                        Escribir "Total a pagar: $", total_pagar
+                    FinSi
+                SiNo
+                    Escribir "Categoría inválida"
+                FinSi
+
+            2:
+                Escribir "Ocupados: ", ocupados
+                Escribir "Disponibles: ", disponibles
+
+            3:
+                Escribir "Total recaudado: $", recaudo_total
+                Escribir "Boletos General: ", cant_general
+                Escribir "Boletos Estudiante: ", cant_estud
+                Escribir "Transacciones con descuento: ", trans_con_desc
+
+            De Otro Modo:
+                Escribir "Opción inválida"
+        FinSegun
+    Hasta Que opcion = 3
+FinAlgoritmo
+
